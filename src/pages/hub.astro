@@ -1,0 +1,220 @@
+---
+import Layout from '../layouts/Layout.astro';
+import settings from '../data/settings.json';
+---
+
+<Layout title="The Hub" description="The Hub at Big Brue - lightning talks, live music, local food and drink, gallery and gardens access.">
+  <section class="bg-bright pt-28 md:pt-32 pb-16 md:pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div>
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-sludge-dark tracking-tight mb-4">
+            THE HUB
+          </h1>
+          <p class="text-xl md:text-2xl font-medium text-sludge-dark/80 mb-6">
+            The heart of Big Brue. Where ideas spark, conversations flow, and community comes alive.
+          </p>
+          <p class="text-lg text-sludge-dark/70 mb-8">
+            Even without a main stage ticket, The Hub gives you a full festival experience - all for just £20 per day.
+          </p>
+          <a href="/tickets" class="inline-flex items-center gap-2 bg-sludge hover:bg-sludge-dark text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:scale-105">
+            Get Hub Tickets - £20/day
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=600&fit=crop" alt="Festival atmosphere at The Hub" class="w-full h-full object-cover">
+          </div>
+          <div class="absolute -bottom-4 -right-4 bg-blush text-sludge font-extrabold text-4xl md:text-5xl px-6 py-3 rounded-xl shadow-lg">
+            £20
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's in The Hub -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-sludge mb-12 text-center">
+        WHAT'S IN THE HUB
+      </h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-blush rounded-2xl p-6 md:p-8">
+          <div class="w-12 h-12 bg-sludge rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-sludge mb-2">Lightning Talks</h3>
+          <p class="text-sludge/70">
+            5-minute bursts of brilliance from emerging voices and local experts. Quick, punchy, inspiring.
+          </p>
+        </div>
+
+        <div class="bg-stone rounded-2xl p-6 md:p-8">
+          <div class="w-12 h-12 bg-sludge rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-sludge mb-2">Live Music</h3>
+          <p class="text-sludge/70">
+            Performances throughout the day from local and emerging artists. Acoustic sets, bands, and everything in between.
+          </p>
+        </div>
+
+        <div class="bg-sludge rounded-2xl p-6 md:p-8 text-white">
+          <div class="w-12 h-12 bg-bright rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-sludge" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Gallery & Gardens</h3>
+          <p class="text-white/70">
+            Full access to Hauser & Wirth's world-class gallery and stunning gardens. Art, nature, inspiration.
+          </p>
+        </div>
+
+        <div class="bg-bright rounded-2xl p-6 md:p-8">
+          <div class="w-12 h-12 bg-sludge rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-sludge-dark mb-2">Food & Drink</h3>
+          <p class="text-sludge-dark/70">
+            Somerset's finest local producers. Artisan food stalls, craft drinks, and the famous Roth Bar & Grill.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upgrade Option -->
+  <section class="py-16 md:py-20 bg-blush">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-sludge mb-4">
+        WANT MORE?
+      </h2>
+      <p class="text-lg md:text-xl text-sludge/80 mb-8 max-w-2xl mx-auto">
+        Hub ticket holders can upgrade to access any main stage talk for just £15. Check availability at the box office on the day.
+      </p>
+
+      <div class="bg-white rounded-2xl p-8 max-w-md mx-auto shadow-sm">
+        <div class="text-4xl font-extrabold text-sludge mb-2">£15</div>
+        <div class="text-sludge/70 mb-4">per talk upgrade</div>
+        <ul class="text-left space-y-2 text-sludge/80 mb-6">
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-bright" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Subject to availability
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-bright" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Available at box office
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-bright" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Mix and match talks
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule Preview -->
+  <section class="py-16 md:py-20 bg-stone">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-sludge mb-8 text-center">
+        HUB SCHEDULE
+      </h2>
+      <p class="text-lg text-warm-black/70 text-center mb-12 max-w-2xl mx-auto">
+        The Hub runs from 10am to 8pm each day. Here's a taste of what to expect.
+      </p>
+
+      <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+        <div class="divide-y divide-stone">
+          <div class="p-6 flex items-center gap-4">
+            <div class="text-sludge font-bold text-lg w-24 shrink-0">10:00</div>
+            <div>
+              <h3 class="font-bold text-warm-black">Gates Open</h3>
+              <p class="text-warm-black/60 text-sm">Gallery and gardens access begins</p>
+            </div>
+          </div>
+          <div class="p-6 flex items-center gap-4">
+            <div class="text-sludge font-bold text-lg w-24 shrink-0">11:00</div>
+            <div>
+              <h3 class="font-bold text-warm-black">Lightning Talks Begin</h3>
+              <p class="text-warm-black/60 text-sm">First round of 5-minute talks</p>
+            </div>
+          </div>
+          <div class="p-6 flex items-center gap-4">
+            <div class="text-sludge font-bold text-lg w-24 shrink-0">12:30</div>
+            <div>
+              <h3 class="font-bold text-warm-black">Lunchtime Session</h3>
+              <p class="text-warm-black/60 text-sm">Live acoustic music</p>
+            </div>
+          </div>
+          <div class="p-6 flex items-center gap-4">
+            <div class="text-sludge font-bold text-lg w-24 shrink-0">14:00</div>
+            <div>
+              <h3 class="font-bold text-warm-black">Afternoon Programme</h3>
+              <p class="text-warm-black/60 text-sm">More lightning talks and discussions</p>
+            </div>
+          </div>
+          <div class="p-6 flex items-center gap-4">
+            <div class="text-sludge font-bold text-lg w-24 shrink-0">17:00</div>
+            <div>
+              <h3 class="font-bold text-warm-black">Sundowner Session</h3>
+              <p class="text-warm-black/60 text-sm">Live music and drinks</p>
+            </div>
+          </div>
+          <div class="p-6 flex items-center gap-4">
+            <div class="text-sludge font-bold text-lg w-24 shrink-0">20:00</div>
+            <div>
+              <h3 class="font-bold text-warm-black">Hub Closes</h3>
+              <p class="text-warm-black/60 text-sm">Evening continues at local venues</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/programme" class="inline-flex items-center gap-2 text-sludge font-bold hover:text-bright transition-colors group">
+          View full programme
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-20 bg-sludge">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+        JOIN US AT THE HUB
+      </h2>
+      <p class="text-lg text-white/70 mb-8">
+        The most accessible way to experience Big Brue. No booking required for individual talks - just turn up and enjoy.
+      </p>
+      <a href="/tickets" class="inline-flex items-center gap-2 bg-bright hover:bg-bright-dark text-sludge-dark font-bold px-8 py-4 rounded-full text-lg transition-all hover:scale-105">
+        Get Hub Tickets
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+</Layout>

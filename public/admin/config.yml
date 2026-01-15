@@ -1,0 +1,153 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "speakers"
+    label: "Speakers"
+    folder: "src/content/speakers"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Role", name: "role", widget: "string", hint: "e.g. Actor & Activist, Journalist" }
+      - { label: "Photo URL", name: "photo", widget: "string", hint: "URL to speaker photo" }
+      - label: "Categories"
+        name: "categories"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "Arts", value: "arts" }
+          - { label: "Politics", value: "politics" }
+          - { label: "Science", value: "science" }
+          - { label: "Literature", value: "literature" }
+          - { label: "Environment", value: "environment" }
+          - { label: "Wellbeing", value: "wellbeing" }
+          - { label: "Family", value: "family" }
+      - { label: "Featured on Homepage", name: "featured", widget: "boolean", default: false }
+      - { label: "Display Order", name: "order", widget: "number", required: false, hint: "Lower numbers appear first" }
+      - { label: "Talk Title", name: "talkTitle", widget: "string", required: false }
+      - { label: "Talk Date", name: "talkDate", widget: "string", required: false, hint: "Format: 2026-06-13" }
+      - { label: "Talk Time", name: "talkTime", widget: "string", required: false, hint: "Format: 10:30" }
+      - { label: "Talk Venue", name: "talkVenue", widget: "string", required: false, default: "Main Marquee" }
+      - { label: "Bio", name: "body", widget: "markdown" }
+
+  - name: "programme"
+    label: "Programme"
+    folder: "src/content/programme"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "string", hint: "Format: 2026-06-12" }
+      - { label: "Start Time", name: "startTime", widget: "string", hint: "Format: 10:30" }
+      - { label: "End Time", name: "endTime", widget: "string", hint: "Format: 11:30" }
+      - label: "Venue"
+        name: "venue"
+        widget: "select"
+        options:
+          - "Main Marquee"
+          - "The Hub Stage"
+          - "Garden Tent"
+          - "Gallery Space"
+      - label: "Categories"
+        name: "categories"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "Arts", value: "arts" }
+          - { label: "Politics", value: "politics" }
+          - { label: "Science", value: "science" }
+          - { label: "Literature", value: "literature" }
+          - { label: "Environment", value: "environment" }
+          - { label: "Wellbeing", value: "wellbeing" }
+          - { label: "Family", value: "family" }
+      - { label: "Speakers (slugs)", name: "speakers", widget: "list", required: false, hint: "Speaker file names without .md" }
+      - { label: "Ticket Required", name: "ticketRequired", widget: "boolean", default: true }
+      - { label: "Family Friendly", name: "familyFriendly", widget: "boolean", default: false }
+      - { label: "Description", name: "body", widget: "markdown" }
+
+  - name: "tickets"
+    label: "Tickets"
+    folder: "src/content/tickets"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Price (£)", name: "price", widget: "number" }
+      - { label: "Earlybird Price (£)", name: "earlybirdPrice", widget: "number", required: false }
+      - { label: "Earlybird Ends", name: "earlybirdEnds", widget: "string", required: false, hint: "Format: 2026-03-01" }
+      - { label: "Includes", name: "includes", widget: "list" }
+      - { label: "Available", name: "available", widget: "boolean", default: true }
+      - { label: "Display Order", name: "order", widget: "number" }
+      - { label: "Highlight (Most Popular)", name: "highlight", widget: "boolean", default: false }
+      - label: "Card Style"
+        name: "variant"
+        widget: "select"
+        options:
+          - { label: "Bright Green", value: "bright" }
+          - { label: "White", value: "white" }
+          - { label: "Dark Green", value: "sludge" }
+      - { label: "Description", name: "body", widget: "markdown", required: false }
+
+  - name: "faq"
+    label: "FAQ"
+    folder: "src/content/faq"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Question", name: "question", widget: "string" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "General", value: "general" }
+          - { label: "Tickets", value: "tickets" }
+          - { label: "Getting There", value: "getting-there" }
+          - { label: "At the Festival", value: "at-the-festival" }
+          - { label: "Accessibility", value: "accessibility" }
+      - { label: "Display Order", name: "order", widget: "number" }
+      - { label: "Answer", name: "body", widget: "markdown" }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "General Settings"
+        name: "general"
+        file: "src/data/settings.json"
+        fields:
+          - { label: "Site Name", name: "siteName", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Event Dates", name: "eventDates", widget: "string" }
+          - label: "Venue"
+            name: "venue"
+            widget: "object"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Address", name: "address", widget: "string" }
+              - { label: "Map URL", name: "mapUrl", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Instagram", name: "instagram", widget: "string" }
+              - { label: "Twitter", name: "twitter", widget: "string" }
+          - label: "Earlybird Settings"
+            name: "earlybird"
+            widget: "object"
+            fields:
+              - { label: "Active", name: "active", widget: "boolean" }
+              - { label: "Ends Date", name: "endsDate", widget: "string" }
+              - { label: "Message", name: "message", widget: "string" }
+          - label: "Countdown"
+            name: "countdown"
+            widget: "object"
+            fields:
+              - { label: "Active", name: "active", widget: "boolean" }
+              - { label: "Target Date", name: "targetDate", widget: "string", hint: "ISO format: 2026-06-12T09:00:00" }

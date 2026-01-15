@@ -1,0 +1,269 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import settings from '../data/settings.json';
+
+const allProgramme = await getCollection('programme');
+const allSpeakers = await getCollection('speakers');
+
+// Group events by date
+const eventsByDate: Record<string, typeof allProgramme> = {};
+allProgramme.forEach(event => {
+  const date = event.data.date;
+  if (!eventsByDate[date]) {
+    eventsByDate[date] = [];
+  }
+  eventsByDate[date].push(event);
+});
+
+// Sort events within each day
+Object.keys(eventsByDate).forEach(date => {
+  eventsByDate[date].sort((a, b) => a.data.startTime.localeCompare(b.data.startTime));
+});
+
+// Sort dates
+const sortedDates = Object.keys(eventsByDate).sort();
+
+// Get unique categories
+const allCategories = [...new Set(allProgramme.flatMap(e => e.data.categories || []))];
+
+// Format date for display
+function formatDate(dateStr: string) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+}
+
+function formatShortDate(dateStr: string) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric' });
+}
+---
+
+<Layout title="Programme" description="Explore the full programme of talks, discussions and events at Big Brue.">
+  <section class="bg-blush pt-28 md:pt-32 pb-16 md:pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-sludge tracking-tight mb-4">
+          PROGRAMME
+        </h1>
+        <p class="text-lg md:text-xl text-sludge/80 leading-relaxed">
+          Three days of inspiring conversations. {settings.eventDates}, Bruton, Somerset.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-stone">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Day Tabs -->
+      <div class="flex justify-center gap-2 md:gap-4 mb-6">
+        {sortedDates.map((date, index) => (
+          <button
+            class:list={[
+              "day-tab px-4 md:px-6 py-3 rounded-full font-bold transition-colors",
+              index === 0 ? "bg-sludge text-white" : "bg-white text-sludge hover:bg-sludge/10"
+            ]}
+            data-date={date}
+          >
+            {formatShortDate(date)}
+          </button>
+        ))}
+      </div>
+
+      <!-- Category Filters -->
+      <div class="flex flex-wrap justify-center gap-2 mb-10">
+        <button
+          class="category-btn px-4 py-2 rounded-full font-medium text-sm transition-colors bg-sludge/10 text-sludge"
+          data-category="all"
+        >
+          All Categories
+        </button>
+        {allCategories.map(category => (
+          <button
+            class="category-btn px-4 py-2 rounded-full font-medium text-sm transition-colors bg-white text-sludge/70 hover:bg-sludge/10"
+            data-category={category}
+          >
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </button>
+        ))}
+      </div>
+
+      <!-- Programme List -->
+      {sortedDates.map((date, dateIndex) => (
+        <div
+          class:list={["day-content", dateIndex !== 0 && "hidden"]}
+          data-date={date}
+        >
+          <h2 class="text-2xl md:text-3xl font-extrabold text-sludge mb-6 text-center">
+            {formatDate(date)}
+          </h2>
+
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+            <div class="divide-y divide-stone">
+              {eventsByDate[date].map(event => {
+                const eventSpeakers = event.data.speakers?.map((slug: string) =>
+                  allSpeakers.find(s => s.slug === slug)
+                ).filter(Boolean);
+
+                return (
+                  <div
+                    class="event-item p-6 hover:bg-stone/50 transition-colors"
+                    data-categories={JSON.stringify(event.data.categories || [])}
+                  >
+                    <div class="flex items-start gap-4">
+                      <div class="text-sludge font-bold text-lg w-16 md:w-20 shrink-0">
+                        {event.data.startTime}
+                      </div>
+                      <div class="grow">
+                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-2 md:gap-4">
+                          <div class="grow">
+                            <h3 class="font-bold text-lg text-warm-black">{event.data.title}</h3>
+                            {eventSpeakers && eventSpeakers.length > 0 && (
+                              <p class="text-warm-black/60 text-sm mt-1">
+                                {eventSpeakers.map((s: any) => s?.data.name).join(', ')}
+                              </p>
+                            )}
+                            <div class="flex flex-wrap items-center gap-3 mt-2 text-sm text-warm-black/50">
+                              <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                {event.data.startTime} - {event.data.endTime}
+                              </span>
+                              <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                </svg>
+                                {event.data.venue}
+                              </span>
+                              {event.data.familyFriendly && (
+                                <span class="text-bright font-medium">Family Friendly</span>
+                              )}
+                            </div>
+                          </div>
+                          <div class="flex gap-2 shrink-0">
+                            {event.data.categories?.slice(0, 2).map((cat: string) => (
+                              <span class="px-3 py-1 bg-blush text-sludge text-xs font-bold rounded-full uppercase">
+                                {cat}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden text-center py-16">
+        <p class="text-lg text-warm-black/60">No events found matching your filters.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-bright">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-sludge-dark mb-4">
+        Ready to join us?
+      </h2>
+      <p class="text-lg text-sludge-dark/70 mb-8">
+        Book your tickets now to secure your place at Big Brue.
+      </p>
+      <a href="/tickets" class="inline-flex items-center gap-2 bg-sludge hover:bg-sludge-dark text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:scale-105">
+        Get Tickets
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const dayTabs = document.querySelectorAll('.day-tab');
+  const dayContents = document.querySelectorAll('.day-content');
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const emptyState = document.getElementById('empty-state');
+
+  let currentCategory = 'all';
+
+  // Day tab switching
+  dayTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const date = tab.getAttribute('data-date');
+
+      // Update tab styles
+      dayTabs.forEach(t => {
+        t.classList.remove('bg-sludge', 'text-white');
+        t.classList.add('bg-white', 'text-sludge', 'hover:bg-sludge/10');
+      });
+      tab.classList.remove('bg-white', 'text-sludge', 'hover:bg-sludge/10');
+      tab.classList.add('bg-sludge', 'text-white');
+
+      // Show/hide day content
+      dayContents.forEach(content => {
+        if (content.getAttribute('data-date') === date) {
+          content.classList.remove('hidden');
+        } else {
+          content.classList.add('hidden');
+        }
+      });
+
+      // Re-apply category filter
+      applyFilters();
+    });
+  });
+
+  // Category filtering
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentCategory = btn.getAttribute('data-category') || 'all';
+
+      // Update button styles
+      categoryBtns.forEach(b => {
+        b.classList.remove('bg-sludge/10', 'text-sludge');
+        b.classList.add('bg-white', 'text-sludge/70');
+      });
+      btn.classList.remove('bg-white', 'text-sludge/70');
+      btn.classList.add('bg-sludge/10', 'text-sludge');
+
+      applyFilters();
+    });
+  });
+
+  function applyFilters() {
+    let visibleCount = 0;
+
+    dayContents.forEach(dayContent => {
+      if (dayContent.classList.contains('hidden')) return;
+
+      const eventItems = dayContent.querySelectorAll('.event-item');
+      eventItems.forEach(item => {
+        const categories = JSON.parse(item.getAttribute('data-categories') || '[]');
+        const shouldShow = currentCategory === 'all' || categories.includes(currentCategory);
+
+        if (shouldShow) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+
+    // Show/hide empty state
+    if (emptyState) {
+      if (visibleCount === 0) {
+        emptyState.classList.remove('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+      }
+    }
+  }
+</script>

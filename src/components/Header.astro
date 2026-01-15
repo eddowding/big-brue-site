@@ -1,0 +1,88 @@
+---
+import settings from '../data/settings.json';
+
+const navItems = [
+  { href: '/speakers', label: 'Speakers' },
+  { href: '/programme', label: 'Programme' },
+  { href: '/hub', label: 'The Hub' },
+  { href: '/tickets', label: 'Tickets' },
+  { href: '/info', label: 'Info' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-stone">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3">
+        <svg class="w-10 h-10 md:w-12 md:h-12 text-sludge" viewBox="0 0 100 100" fill="currentColor">
+          <rect x="5" y="5" width="90" height="90" rx="4" fill="currentColor"/>
+          <path d="M20 20 Q30 15 40 25 Q50 35 45 50 Q40 65 50 75 Q60 85 75 80" stroke="#F5D5D5" stroke-width="12" fill="none" stroke-linecap="round"/>
+          <path d="M15 15 Q25 20 30 15 M70 10 Q80 15 85 12 M25 25 Q35 30 40 22" stroke="#F5D5D5" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="hidden sm:block">
+          <div class="text-sludge font-extrabold text-xl tracking-tight leading-none">{settings.siteName.toUpperCase()}</div>
+          <div class="text-sludge/70 text-xs font-medium tracking-wide">{settings.tagline}</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8">
+        {navItems.map(item => (
+          <a
+            href={item.href}
+            class:list={[
+              "font-medium transition-colors",
+              currentPath === item.href || currentPath.startsWith(item.href + '/')
+                ? "text-sludge font-bold"
+                : "text-warm-black hover:text-sludge"
+            ]}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- CTA Button -->
+      <div class="flex items-center gap-4">
+        <a href="/tickets" class="bg-bright hover:bg-bright-dark text-sludge-dark font-bold px-5 py-2.5 rounded-full transition-colors text-sm md:text-base">
+          Buy Tickets
+        </a>
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-sludge">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-stone">
+    <nav class="px-4 py-4 space-y-3">
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class:list={[
+            "block py-2 font-medium transition-colors",
+            currentPath === item.href ? "text-sludge font-bold" : "text-warm-black"
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

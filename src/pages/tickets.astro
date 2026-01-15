@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TicketCard from '../components/TicketCard.astro';
+import { getCollection } from 'astro:content';
+import settings from '../data/settings.json';
+
+const allTickets = await getCollection('tickets');
+const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="Tickets" description="Get your tickets for Big Brue festival. Earlybird pricing available.">
+  <section class="bg-blush pt-28 md:pt-32 pb-16 md:pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-sludge tracking-tight mb-4">
+          TICKETS
+        </h1>
+        <p class="text-lg md:text-xl text-sludge/80 leading-relaxed">
+          Join us for three days of inspiring conversations at Hauser & Wirth Somerset.
+        </p>
+        {settings.earlybird.active && (
+          <div class="mt-6 inline-flex items-center gap-2 bg-sludge text-white px-4 py-2 rounded-full text-sm font-bold">
+            <svg class="w-5 h-5 text-bright" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+            </svg>
+            {settings.earlybird.message}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-stone">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-6">
+        {tickets.map(ticket => (
+          <TicketCard
+            name={ticket.data.name}
+            price={ticket.data.price}
+            earlybirdPrice={ticket.data.earlybirdPrice}
+            includes={ticket.data.includes}
+            variant={ticket.data.variant}
+            highlight={ticket.data.highlight}
+            perDay={ticket.data.name.toLowerCase().includes('hub')}
+          />
+        ))}
+      </div>
+
+      <!-- Additional Info -->
+      <div class="mt-12 grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl p-6 md:p-8">
+          <h3 class="text-xl font-extrabold text-sludge mb-4">Concessions</h3>
+          <p class="text-warm-black/70 mb-4">
+            We offer discounted tickets for students, over-65s, and registered unemployed. Please bring valid ID to the festival.
+          </p>
+          <p class="text-warm-black/70">
+            <strong>Under 16s</strong> go free when accompanied by a paying adult (max 2 children per adult).
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 md:p-8">
+          <h3 class="text-xl font-extrabold text-sludge mb-4">Group Bookings</h3>
+          <p class="text-warm-black/70 mb-4">
+            Planning to come with friends or colleagues? Groups of 10+ receive 15% off ticket prices.
+          </p>
+          <a href={`mailto:${settings.contact.email}?subject=Group Booking Enquiry`} class="inline-flex items-center gap-2 text-bright font-bold hover:text-bright-dark transition-colors">
+            Contact us for group rates
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-sludge mb-8 text-center">
+        Ticket FAQs
+      </h2>
+
+      <div class="space-y-4">
+        <details class="bg-stone rounded-xl p-6 group">
+          <summary class="font-bold text-sludge cursor-pointer flex items-center justify-between">
+            Can I upgrade my ticket on the day?
+            <svg class="w-5 h-5 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <p class="mt-4 text-warm-black/70">
+            Yes! Hub ticket holders can upgrade to access main stage talks for an additional fee, subject to availability. Visit our box office on the day.
+          </p>
+        </details>
+
+        <details class="bg-stone rounded-xl p-6 group">
+          <summary class="font-bold text-sludge cursor-pointer flex items-center justify-between">
+            Are tickets refundable?
+            <svg class="w-5 h-5 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <p class="mt-4 text-warm-black/70">
+            Tickets are refundable up to 30 days before the event. After this date, we can offer ticket transfers to another person but not refunds.
+          </p>
+        </details>
+
+        <details class="bg-stone rounded-xl p-6 group">
+          <summary class="font-bold text-sludge cursor-pointer flex items-center justify-between">
+            What's included in my ticket?
+            <svg class="w-5 h-5 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <p class="mt-4 text-warm-black/70">
+            All tickets include access to the Hub area with its programme of lightning talks, live music, food & drink, and the Hauser & Wirth gallery and gardens. Day Pass and Weekend tickets also include main stage talks.
+          </p>
+        </details>
+
+        <details class="bg-stone rounded-xl p-6 group">
+          <summary class="font-bold text-sludge cursor-pointer flex items-center justify-between">
+            Is there accessible seating?
+            <svg class="w-5 h-5 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <p class="mt-4 text-warm-black/70">
+            Yes, we have dedicated accessible seating areas for all main stage events. Please contact us when booking to arrange assistance. Free tickets are available for personal assistants.
+          </p>
+        </details>
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/faq" class="inline-flex items-center gap-2 text-sludge font-bold hover:text-bright transition-colors group">
+          View all FAQs
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

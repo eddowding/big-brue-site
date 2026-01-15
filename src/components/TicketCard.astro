@@ -1,0 +1,75 @@
+---
+interface Props {
+  name: string;
+  price: number;
+  earlybirdPrice?: number;
+  includes: string[];
+  variant: 'bright' | 'white' | 'sludge';
+  highlight?: boolean;
+  perDay?: boolean;
+}
+
+const { name, price, earlybirdPrice, includes, variant, highlight = false, perDay = false } = Astro.props;
+
+const variantStyles = {
+  bright: {
+    bg: 'bg-bright',
+    text: 'text-sludge-dark',
+    textMuted: 'text-sludge-dark/70',
+    button: 'bg-sludge hover:bg-sludge-dark text-white',
+    check: 'text-sludge-dark',
+  },
+  white: {
+    bg: 'bg-white shadow-lg',
+    text: 'text-sludge',
+    textMuted: 'text-warm-black/70',
+    button: 'bg-bright hover:bg-bright-dark text-sludge-dark',
+    check: 'text-bright',
+  },
+  sludge: {
+    bg: 'bg-sludge',
+    text: 'text-white',
+    textMuted: 'text-white/70',
+    button: 'bg-bright hover:bg-bright-dark text-sludge-dark',
+    check: 'text-bright',
+  },
+};
+
+const styles = variantStyles[variant];
+const displayPrice = earlybirdPrice || price;
+const originalPrice = earlybirdPrice ? price : null;
+---
+
+<div class:list={["rounded-2xl p-6 md:p-8 flex flex-col", styles.bg, highlight && "ring-2 ring-sludge"]}>
+  <div class="mb-4">
+    {highlight && (
+      <div class="inline-block bg-sludge text-white text-xs font-bold px-3 py-1 rounded-full mb-2">MOST POPULAR</div>
+    )}
+    <h3 class:list={["text-2xl font-extrabold", styles.text]}>{name.toUpperCase()}</h3>
+    {perDay && <p class={styles.textMuted}>Per day</p>}
+    {!perDay && variant === 'white' && <p class={styles.textMuted}>Saturday or Sunday</p>}
+    {!perDay && variant === 'sludge' && <p class={styles.textMuted}>Full festival experience</p>}
+  </div>
+
+  <div class="mb-6">
+    <span class:list={["text-5xl font-extrabold", styles.text]}>£{displayPrice}</span>
+    {originalPrice && (
+      <span class:list={["text-lg line-through ml-2", styles.textMuted]}>£{originalPrice}</span>
+    )}
+  </div>
+
+  <ul class:list={["space-y-3 mb-8 grow", styles.textMuted]}>
+    {includes.map(item => (
+      <li class="flex items-start gap-2">
+        <svg class:list={["w-5 h-5 flex-shrink-0 mt-0.5", styles.check]} fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+        </svg>
+        <span>{item}</span>
+      </li>
+    ))}
+  </ul>
+
+  <button class:list={["w-full font-bold py-4 rounded-full transition-colors", styles.button]}>
+    {variant === 'bright' ? 'Select Day' : `Buy ${name}`}
+  </button>
+</div>

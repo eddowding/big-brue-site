@@ -1,0 +1,88 @@
+---
+import settings from '../data/settings.json';
+---
+
+<footer class="bg-warm-black text-white py-12 md:py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-8 mb-12">
+      <!-- Logo & Info -->
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-3 mb-4">
+          <svg class="w-10 h-10 text-bright" viewBox="0 0 100 100" fill="currentColor">
+            <rect x="5" y="5" width="90" height="90" rx="4" fill="currentColor"/>
+            <path d="M20 20 Q30 15 40 25 Q50 35 45 50 Q40 65 50 75 Q60 85 75 80" stroke="#1e1e1e" stroke-width="12" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div class="font-extrabold text-lg">{settings.siteName.toUpperCase()}</div>
+            <div class="text-white/50 text-xs">{settings.tagline}</div>
+          </div>
+        </div>
+        <p class="text-white/50 text-sm">
+          {settings.eventDates}<br>
+          Bruton, Somerset
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h4 class="font-bold mb-4">Festival</h4>
+        <ul class="space-y-2 text-white/70">
+          <li><a href="/programme" class="hover:text-bright transition-colors">Programme</a></li>
+          <li><a href="/speakers" class="hover:text-bright transition-colors">Speakers</a></li>
+          <li><a href="/hub" class="hover:text-bright transition-colors">The Hub</a></li>
+          <li><a href="/tickets" class="hover:text-bright transition-colors">Tickets</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4">Information</h4>
+        <ul class="space-y-2 text-white/70">
+          <li><a href="/info" class="hover:text-bright transition-colors">Getting There</a></li>
+          <li><a href="/info#accommodation" class="hover:text-bright transition-colors">Accommodation</a></li>
+          <li><a href="/info#accessibility" class="hover:text-bright transition-colors">Accessibility</a></li>
+          <li><a href="/faq" class="hover:text-bright transition-colors">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-4">Connect</h4>
+        <ul class="space-y-2 text-white/70">
+          <li><a href={`https://instagram.com/${settings.contact.instagram.replace('@', '')}`} class="hover:text-bright transition-colors">Instagram</a></li>
+          <li><a href={`https://twitter.com/${settings.contact.twitter.replace('@', '')}`} class="hover:text-bright transition-colors">Twitter</a></li>
+          <li><a href={`mailto:${settings.contact.email}`} class="hover:text-bright transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-8">
+      <p class="text-white/50 text-sm mb-4">
+        Big Brue is a not-for-profit initiative of Mariella Frostrup, Jason McCue, Catherine Fairweather, Eleanor O'Keeffe and John Gordon.
+      </p>
+      <div class="flex flex-wrap gap-4 text-white/30 text-sm">
+        <span>&copy; 2026 Big Brue</span>
+        <a href="/privacy" class="hover:text-white/50 transition-colors">Privacy Policy</a>
+        <a href="/terms" class="hover:text-white/50 transition-colors">Terms</a>
+        <a href="/info#accessibility" class="hover:text-white/50 transition-colors">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Newsletter Section -->
+<section class="py-16 md:py-20 bg-sludge">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-4">Stay in the loop</h2>
+    <p class="text-white/70 mb-8">Be the first to hear about new speakers and programme announcements.</p>
+
+    <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+      <input
+        type="email"
+        placeholder="Your email address"
+        class="grow px-5 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-bright"
+      >
+      <button type="submit" class="px-8 py-4 bg-bright hover:bg-bright-dark text-sludge-dark font-bold rounded-full transition-colors whitespace-nowrap">
+        Subscribe
+      </button>
+    </form>
+  </div>
+</section>

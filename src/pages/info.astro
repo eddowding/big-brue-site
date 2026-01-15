@@ -1,0 +1,292 @@
+---
+import Layout from '../layouts/Layout.astro';
+import settings from '../data/settings.json';
+---
+
+<Layout title="Practical Information" description="Everything you need to know about getting to Big Brue - venue, transport, accommodation and accessibility.">
+  <section class="bg-blush pt-28 md:pt-32 pb-16 md:pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-sludge tracking-tight mb-4">
+          PRACTICAL INFO
+        </h1>
+        <p class="text-lg md:text-xl text-sludge/80 leading-relaxed">
+          Everything you need to know about visiting Big Brue at Hauser & Wirth Somerset.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venue -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-sludge mb-4">THE VENUE</h2>
+          <p class="text-xl font-medium text-warm-black/80 mb-4">{settings.venue.name}</p>
+          <p class="text-warm-black/70 mb-6">
+            Set in the heart of Somerset, Hauser & Wirth's stunning Durslade Farm provides the perfect backdrop for Big Brue. A world-class gallery, beautiful gardens, and a genuine community atmosphere make this one of the UK's most inspiring cultural destinations.
+          </p>
+          <address class="not-italic text-warm-black/70 mb-6">
+            <strong class="text-warm-black">{settings.venue.address}</strong>
+          </address>
+          <a
+            href={settings.venue.mapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-sludge hover:bg-sludge-dark text-white font-bold px-6 py-3 rounded-full transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            View on Google Maps
+          </a>
+        </div>
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&h=600&fit=crop" alt="Hauser & Wirth Somerset" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Getting There -->
+  <section class="py-16 md:py-20 bg-stone">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-sludge mb-12 text-center">GETTING THERE</h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-6 md:p-8">
+          <div class="w-12 h-12 bg-bright rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-sludge-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-sludge mb-2">By Train</h3>
+          <p class="text-warm-black/70 mb-4">
+            Bruton station is a 10-minute walk from Hauser & Wirth. Direct trains run from London Paddington (2 hours) via Castle Cary.
+          </p>
+          <ul class="text-sm text-warm-black/60 space-y-1">
+            <li>London Paddington - 2 hours</li>
+            <li>Bristol Temple Meads - 1 hour</li>
+            <li>Bath Spa - 45 minutes</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 md:p-8">
+          <div class="w-12 h-12 bg-bright rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-sludge-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-sludge mb-2">By Car</h3>
+          <p class="text-warm-black/70 mb-4">
+            Free parking is available on site. Bruton is just off the A303, easily accessible from London (2.5 hours) and Bristol (1 hour).
+          </p>
+          <ul class="text-sm text-warm-black/60 space-y-1">
+            <li>From A303: Take the Wincanton exit</li>
+            <li>Follow signs to Bruton</li>
+            <li>Venue signposted from village centre</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 md:p-8">
+          <div class="w-12 h-12 bg-bright rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-sludge-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-sludge mb-2">Shuttle Bus</h3>
+          <p class="text-warm-black/70 mb-4">
+            We're running a free shuttle bus service between Bruton station and the venue throughout the festival.
+          </p>
+          <ul class="text-sm text-warm-black/60 space-y-1">
+            <li>Runs every 30 minutes</li>
+            <li>First bus: 9:00am</li>
+            <li>Last bus: 9:00pm</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accommodation -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-sludge mb-4 text-center">ACCOMMODATION</h2>
+      <p class="text-lg text-warm-black/70 text-center mb-12 max-w-2xl mx-auto">
+        Bruton and the surrounding area offer a range of accommodation options, from boutique hotels to cosy B&Bs and camping.
+      </p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-blush rounded-2xl p-6">
+          <h3 class="font-bold text-sludge mb-2">At The Chapel</h3>
+          <p class="text-sm text-sludge/70 mb-3">Boutique hotel in the heart of Bruton</p>
+          <span class="text-xs bg-sludge/10 text-sludge px-2 py-1 rounded-full">5 min walk</span>
+        </div>
+
+        <div class="bg-stone rounded-2xl p-6">
+          <h3 class="font-bold text-sludge mb-2">The Newt</h3>
+          <p class="text-sm text-sludge/70 mb-3">Luxury estate hotel with gardens</p>
+          <span class="text-xs bg-sludge/10 text-sludge px-2 py-1 rounded-full">10 min drive</span>
+        </div>
+
+        <div class="bg-bright rounded-2xl p-6">
+          <h3 class="font-bold text-sludge-dark mb-2">Bruton Camping</h3>
+          <p class="text-sm text-sludge-dark/70 mb-3">Festival camping near the venue</p>
+          <span class="text-xs bg-sludge-dark/10 text-sludge-dark px-2 py-1 rounded-full">On site</span>
+        </div>
+
+        <div class="bg-sludge rounded-2xl p-6">
+          <h3 class="font-bold text-white mb-2">Local B&Bs</h3>
+          <p class="text-sm text-white/70 mb-3">Various options in and around Bruton</p>
+          <span class="text-xs bg-white/10 text-white px-2 py-1 rounded-full">Various</span>
+        </div>
+      </div>
+
+      <p class="text-center text-warm-black/60 mt-8">
+        Book early - accommodation in Bruton fills up quickly during events.
+      </p>
+    </div>
+  </section>
+
+  <!-- Accessibility -->
+  <section class="py-16 md:py-20 bg-blush">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-sludge mb-4 text-center">ACCESSIBILITY</h2>
+      <p class="text-lg text-sludge/70 text-center mb-12">
+        We're committed to making Big Brue accessible to everyone.
+      </p>
+
+      <div class="bg-white rounded-2xl p-8 shadow-sm">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-bold text-sludge mb-4">On Site</h3>
+            <ul class="space-y-3 text-warm-black/70">
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-bright shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Step-free access to all main areas
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-bright shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Accessible toilets throughout
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-bright shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Reserved seating areas for wheelchair users
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-bright shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Assistance dogs welcome
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-sludge mb-4">Support Available</h3>
+            <ul class="space-y-3 text-warm-black/70">
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-bright shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Free tickets for personal assistants
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-bright shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                BSL interpreters at selected events
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-bright shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Quiet room available
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-bright shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Large print programmes
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-stone">
+          <p class="text-warm-black/70 text-center">
+            Have specific requirements? <a href={`mailto:${settings.contact.email}?subject=Accessibility Enquiry`} class="text-bright font-bold hover:text-bright-dark">Get in touch</a> and we'll do our best to help.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Bring -->
+  <section class="py-16 md:py-20 bg-sludge text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-8 text-center">WHAT TO BRING</h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white/10 rounded-2xl p-6">
+          <h3 class="font-bold text-bright mb-3">Essentials</h3>
+          <ul class="space-y-2 text-white/80 text-sm">
+            <li>Your ticket (digital or printed)</li>
+            <li>Valid ID for concessions</li>
+            <li>Sun cream & sunglasses</li>
+            <li>Layers (British weather!)</li>
+            <li>Comfortable walking shoes</li>
+          </ul>
+        </div>
+
+        <div class="bg-white/10 rounded-2xl p-6">
+          <h3 class="font-bold text-bright mb-3">Recommended</h3>
+          <ul class="space-y-2 text-white/80 text-sm">
+            <li>Reusable water bottle</li>
+            <li>Blanket for outdoor seating</li>
+            <li>Camera</li>
+            <li>Notebook for inspiration</li>
+            <li>Cash (some stalls)</li>
+          </ul>
+        </div>
+
+        <div class="bg-white/10 rounded-2xl p-6">
+          <h3 class="font-bold text-bright mb-3">Not Permitted</h3>
+          <ul class="space-y-2 text-white/80 text-sm">
+            <li>Outside alcohol</li>
+            <li>Dogs (except assistance)</li>
+            <li>Drones</li>
+            <li>Professional cameras (without pass)</li>
+            <li>Umbrellas in marquees</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-sludge mb-4">QUESTIONS?</h2>
+      <p class="text-lg text-warm-black/70 mb-8">
+        Check our FAQ or get in touch with the team.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/faq" class="inline-flex items-center justify-center gap-2 bg-stone hover:bg-stone/80 text-sludge font-bold px-8 py-4 rounded-full transition-colors">
+          View FAQs
+        </a>
+        <a href={`mailto:${settings.contact.email}`} class="inline-flex items-center justify-center gap-2 bg-sludge hover:bg-sludge-dark text-white font-bold px-8 py-4 rounded-full transition-colors">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

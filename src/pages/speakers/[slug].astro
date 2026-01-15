@@ -1,0 +1,142 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const speakers = await getCollection('speakers');
+  return speakers.map(speaker => ({
+    params: { slug: speaker.slug },
+    props: { speaker },
+  }));
+}
+
+const { speaker } = Astro.props;
+const { Content } = await speaker.render();
+
+// Get related programme events
+const allProgramme = await getCollection('programme');
+const speakerEvents = allProgramme.filter(event =>
+  event.data.speakers?.includes(speaker.slug)
+);
+
+// Get other speakers for "More Speakers" section
+const allSpeakers = await getCollection('speakers');
+const otherSpeakers = allSpeakers
+  .filter(s => s.slug !== speaker.slug)
+  .sort(() => Math.random() - 0.5)
+  .slice(0, 4);
+
+const bgColors = ['bg-blush', 'bg-bright', 'bg-sludge', 'bg-stone'];
+const textColors = ['text-sludge', 'text-sludge-dark', 'text-white', 'text-sludge'];
+---
+
+<Layout title={speaker.data.name} description={`${speaker.data.name} - ${speaker.data.role} at Big Brue festival.`}>
+  <section class="bg-blush pt-28 md:pt-32 pb-16 md:pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/speakers" class="inline-flex items-center gap-2 text-sludge/70 hover:text-sludge font-medium mb-8 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+        </svg>
+        All Speakers
+      </a>
+
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+        <div class="aspect-square rounded-2xl overflow-hidden bg-white/30 max-w-md">
+          <img
+            src={speaker.data.photo}
+            alt={speaker.data.name}
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            {speaker.data.categories?.map((cat: string) => (
+              <span class="px-3 py-1 bg-sludge/10 text-sludge text-sm font-bold rounded-full uppercase">
+                {cat}
+              </span>
+            ))}
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif italic text-sludge mb-2">
+            {speaker.data.name}
+          </h1>
+          <p class="text-xl text-sludge/70 font-medium mb-6">{speaker.data.role}</p>
+
+          <div class="prose prose-lg text-sludge/80 mb-8">
+            <Content />
+          </div>
+
+          {speaker.data.talkTitle && (
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <h3 class="text-sm font-bold text-sludge/60 uppercase tracking-wider mb-2">Appearing at Big Brue</h3>
+              <h4 class="text-2xl font-bold text-sludge mb-2">{speaker.data.talkTitle}</h4>
+              <div class="flex flex-wrap gap-4 text-sludge/70">
+                {speaker.data.talkDate && (
+                  <span class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    {new Date(speaker.data.talkDate).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })}
+                  </span>
+                )}
+                {speaker.data.talkTime && (
+                  <span class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    {speaker.data.talkTime}
+                  </span>
+                )}
+                {speaker.data.talkVenue && (
+                  <span class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    {speaker.data.talkVenue}
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- More Speakers -->
+  {otherSpeakers.length > 0 && (
+    <section class="py-16 md:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-sludge mb-8">MORE SPEAKERS</h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {otherSpeakers.map((s, index) => (
+            <a href={`/speakers/${s.slug}`} class:list={["rounded-2xl p-4 md:p-6 transition-transform hover:scale-[1.02] cursor-pointer block", bgColors[index % 4]]}>
+              <div class="aspect-square rounded-xl bg-white/30 mb-4 overflow-hidden">
+                <img
+                  src={s.data.photo}
+                  alt={s.data.name}
+                  class="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class:list={["font-serif text-xl md:text-2xl italic", textColors[index % 4]]}>{s.data.name}</h3>
+              <p class:list={["text-sm font-medium mt-1", textColors[index % 4] + '/70']}>{s.data.role}</p>
+            </a>
+          ))}
+        </div>
+
+        <div class="text-center mt-10">
+          <a href="/speakers" class="inline-flex items-center gap-2 text-sludge font-bold hover:text-bright transition-colors group">
+            View all speakers
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+</Layout>

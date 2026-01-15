@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import settings from '../data/settings.json';
+---
+
+<Layout title="About" description="Big Brue is a festival of creative dialogue for curious minds, bringing together artists, writers, thinkers and decision-makers in Bruton, Somerset.">
+  <section class="bg-blush pt-28 md:pt-32 pb-16 md:pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-sludge tracking-tight mb-4">
+          ABOUT BIG BRUE
+        </h1>
+        <p class="text-lg md:text-xl text-sludge/80 leading-relaxed">
+          A meeting ground for culture, thought and real-world change.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-lg max-w-none">
+        <p class="text-xl md:text-2xl text-sludge font-medium leading-relaxed mb-8">
+          Big Brue brings together artists, writers, thinkers and global decision-makers to exchange ideas and challenge assumptions. We believe that the best conversations happen when diverse minds come together in inspiring spaces.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8 my-12">
+          <div class="bg-blush rounded-2xl p-8">
+            <h3 class="text-xl font-bold text-sludge mb-4">Small Town</h3>
+            <p class="text-sludge/70">
+              Bruton may be small, but it punches above its weight. A vibrant creative community, world-class galleries, and some of the best food in the South West make it the perfect host for meaningful conversation.
+            </p>
+          </div>
+          <div class="bg-bright rounded-2xl p-8">
+            <h3 class="text-xl font-bold text-sludge-dark mb-4">Big Ideas</h3>
+            <p class="text-sludge-dark/70">
+              From climate action to cultural renewal, from personal transformation to systemic change - we tackle the questions that matter. Not just talking, but doing.
+            </p>
+          </div>
+        </div>
+
+        <h2 class="text-3xl font-extrabold text-sludge mt-12 mb-6">Our Story</h2>
+        <p class="text-warm-black/70 mb-6">
+          Big Brue was born from a simple observation: the best ideas emerge when creative people from different worlds collide. Too often, artists talk to artists, politicians to politicians, business to business. We wanted to break down those walls.
+        </p>
+        <p class="text-warm-black/70 mb-6">
+          In partnership with Hauser & Wirth Somerset, we've created a festival that brings together the unexpected. A Hollywood actor and a Somerset farmer. A climate scientist and a chef. A poet and a politician.
+        </p>
+        <p class="text-warm-black/70">
+          The result? Conversations that surprise, inspire, and - we hope - lead to action.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-16 md:py-20 bg-stone">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-sludge mb-12 text-center">OUR VALUES</h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-8">
+          <div class="w-12 h-12 bg-blush rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-sludge" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-sludge mb-2">Real Dialogue</h3>
+          <p class="text-warm-black/70">
+            Not lectures. Not panels where everyone agrees. Real conversations between people with different perspectives, searching for common ground.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8">
+          <div class="w-12 h-12 bg-bright rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-sludge-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-sludge mb-2">Local & Global</h3>
+          <p class="text-warm-black/70">
+            Rooted in Somerset but connected to the world. We celebrate local producers, artists and communities while bringing in global perspectives.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8">
+          <div class="w-12 h-12 bg-sludge rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-sludge mb-2">Action-Oriented</h3>
+          <p class="text-warm-black/70">
+            Talk is cheap unless it leads somewhere. We're not just about conversation - we're about what comes next. Practical, achievable change.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venue Partner -->
+  <section class="py-16 md:py-20 bg-sludge text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&h=600&fit=crop" alt="Hauser & Wirth Somerset" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-4">OUR VENUE PARTNER</h2>
+          <h3 class="text-xl text-bright font-medium mb-4">Hauser & Wirth Somerset</h3>
+          <p class="text-white/70 mb-6">
+            Set on the historic Durslade Farm, Hauser & Wirth Somerset is one of the world's most distinctive art centres. The gallery hosts world-class exhibitions, while the surrounding gardens and farm provide a stunning natural setting.
+          </p>
+          <p class="text-white/70 mb-6">
+            Together with the Roth Bar & Grill, the acclaimed restaurant on site, this is a destination that brings together art, food, nature and community - the perfect home for Big Brue.
+          </p>
+          <a
+            href="https://www.hauserwirth.com/locations/somerset"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-bright font-bold hover:text-white transition-colors"
+          >
+            Visit Hauser & Wirth Somerset
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-sludge mb-4 text-center">THE TEAM</h2>
+      <p class="text-lg text-warm-black/70 text-center mb-12 max-w-2xl mx-auto">
+        Big Brue is produced by a small team of passionate people who believe in the power of conversation.
+      </p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div class="text-center">
+          <div class="aspect-square rounded-2xl bg-blush mb-4 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face" alt="Team member" class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-bold text-sludge">Tom Williams</h3>
+          <p class="text-sm text-warm-black/60">Festival Director</p>
+        </div>
+
+        <div class="text-center">
+          <div class="aspect-square rounded-2xl bg-stone mb-4 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face" alt="Team member" class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-bold text-sludge">Sarah Chen</h3>
+          <p class="text-sm text-warm-black/60">Programme Curator</p>
+        </div>
+
+        <div class="text-center">
+          <div class="aspect-square rounded-2xl bg-bright mb-4 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face" alt="Team member" class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-bold text-sludge">James Roberts</h3>
+          <p class="text-sm text-warm-black/60">Operations</p>
+        </div>
+
+        <div class="text-center">
+          <div class="aspect-square rounded-2xl bg-sludge mb-4 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face" alt="Team member" class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-bold text-white">Emma Davies</h3>
+          <p class="text-sm text-white/60">Communications</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="py-16 md:py-20 bg-blush">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-sludge mb-4">GET IN TOUCH</h2>
+      <p class="text-lg text-sludge/70 mb-8">
+        Questions, partnership enquiries, or just want to say hello?
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a href={`mailto:${settings.contact.email}`} class="inline-flex items-center justify-center gap-2 bg-sludge hover:bg-sludge-dark text-white font-bold px-8 py-4 rounded-full transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          {settings.contact.email}
+        </a>
+      </div>
+
+      <div class="flex justify-center gap-6">
+        <a href={`https://instagram.com/${settings.contact.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" class="text-sludge hover:text-bright transition-colors">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href={`https://twitter.com/${settings.contact.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer" class="text-sludge hover:text-bright transition-colors">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

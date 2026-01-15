@@ -1,0 +1,24 @@
+{
+  "siteName": "Big Brue",
+  "tagline": "Small Town, Big Ideas",
+  "eventDates": "12-14 June 2026",
+  "venue": {
+    "name": "Hauser & Wirth Somerset",
+    "address": "Durslade Farm, Dropping Lane, Bruton BA10 0NL",
+    "mapUrl": "https://maps.google.com/?q=Hauser+%26+Wirth+Somerset"
+  },
+  "contact": {
+    "email": "info@bigbrue.com",
+    "instagram": "@bigbrue",
+    "twitter": "@bigbrue"
+  },
+  "earlybird": {
+    "active": true,
+    "endsDate": "2026-03-01",
+    "message": "Earlybird pricing ends 1 March"
+  },
+  "countdown": {
+    "active": true,
+    "targetDate": "2026-06-12T09:00:00"
+  }
+}

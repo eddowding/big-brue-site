@@ -1,0 +1,187 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import settings from '../data/settings.json';
+
+const allFaqs = await getCollection('faq');
+const faqs = allFaqs.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+
+// Group FAQs by category
+const faqsByCategory: Record<string, typeof faqs> = {};
+faqs.forEach(faq => {
+  const category = faq.data.category || 'general';
+  if (!faqsByCategory[category]) {
+    faqsByCategory[category] = [];
+  }
+  faqsByCategory[category].push(faq);
+});
+
+// Category labels
+const categoryLabels: Record<string, string> = {
+  general: 'General',
+  tickets: 'Tickets & Booking',
+  venue: 'Venue & Getting There',
+  accessibility: 'Accessibility',
+  programme: 'Programme & Events',
+};
+
+const sortedCategories = Object.keys(faqsByCategory).sort((a, b) => {
+  const order = ['general', 'tickets', 'venue', 'programme', 'accessibility'];
+  return order.indexOf(a) - order.indexOf(b);
+});
+---
+
+<Layout title="FAQ" description="Frequently asked questions about Big Brue festival - tickets, venue, accessibility and more.">
+  <section class="bg-blush pt-28 md:pt-32 pb-16 md:pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-sludge tracking-tight mb-4">
+          FAQ
+        </h1>
+        <p class="text-lg md:text-xl text-sludge/80 leading-relaxed">
+          Everything you need to know about Big Brue. Can't find what you're looking for? <a href={`mailto:${settings.contact.email}`} class="text-sludge underline hover:no-underline">Get in touch</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Category Navigation -->
+      <div class="flex flex-wrap gap-2 mb-10 justify-center">
+        <button
+          class="category-btn px-5 py-2 rounded-full font-bold text-sm transition-colors bg-sludge text-white"
+          data-category="all"
+        >
+          All
+        </button>
+        {sortedCategories.map(category => (
+          <button
+            class="category-btn px-5 py-2 rounded-full font-bold text-sm transition-colors bg-white text-sludge border-2 border-sludge/20 hover:border-sludge"
+            data-category={category}
+          >
+            {categoryLabels[category] || category}
+          </button>
+        ))}
+      </div>
+
+      <!-- FAQ List -->
+      <div class="space-y-4" id="faq-list">
+        {sortedCategories.map(category => (
+          <div class="faq-category" data-category={category}>
+            <h2 class="text-xl font-extrabold text-sludge mb-4 mt-8 first:mt-0">
+              {categoryLabels[category] || category}
+            </h2>
+
+            {faqsByCategory[category].map(async (faq) => {
+              const { Content } = await faq.render();
+              return (
+                <details class="faq-item bg-stone rounded-xl p-6 group mb-4" data-category={category}>
+                  <summary class="font-bold text-sludge cursor-pointer flex items-center justify-between gap-4">
+                    <span>{faq.data.question}</span>
+                    <svg class="w-5 h-5 shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </summary>
+                  <div class="mt-4 text-warm-black/70 prose prose-sm max-w-none">
+                    <Content />
+                  </div>
+                </details>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden text-center py-16">
+        <p class="text-lg text-warm-black/60">No FAQs found in this category.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Still have questions -->
+  <section class="py-16 md:py-20 bg-stone">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-sludge mb-4">
+        Still have questions?
+      </h2>
+      <p class="text-lg text-warm-black/70 mb-8">
+        We're here to help. Drop us a line and we'll get back to you as soon as we can.
+      </p>
+      <a href={`mailto:${settings.contact.email}`} class="inline-flex items-center gap-2 bg-sludge hover:bg-sludge-dark text-white font-bold px-8 py-4 rounded-full transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        Contact Us
+      </a>
+    </div>
+  </section>
+
+  <!-- Quick Links -->
+  <section class="py-16 md:py-20 bg-blush">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-sludge mb-8 text-center">
+        Quick Links
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <a href="/tickets" class="bg-white rounded-xl p-6 hover:shadow-lg transition-shadow group">
+          <h3 class="font-bold text-sludge mb-2 group-hover:text-bright transition-colors">Tickets</h3>
+          <p class="text-sm text-warm-black/60">View ticket options and pricing</p>
+        </a>
+        <a href="/programme" class="bg-white rounded-xl p-6 hover:shadow-lg transition-shadow group">
+          <h3 class="font-bold text-sludge mb-2 group-hover:text-bright transition-colors">Programme</h3>
+          <p class="text-sm text-warm-black/60">See the full schedule of events</p>
+        </a>
+        <a href="/info" class="bg-white rounded-xl p-6 hover:shadow-lg transition-shadow group">
+          <h3 class="font-bold text-sludge mb-2 group-hover:text-bright transition-colors">Getting There</h3>
+          <p class="text-sm text-warm-black/60">Transport and accommodation info</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const faqCategories = document.querySelectorAll('.faq-category');
+  const emptyState = document.getElementById('empty-state');
+
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.getAttribute('data-category');
+
+      // Update button styles
+      categoryBtns.forEach(b => {
+        b.classList.remove('bg-sludge', 'text-white');
+        b.classList.add('bg-white', 'text-sludge', 'border-2', 'border-sludge/20');
+      });
+      btn.classList.remove('bg-white', 'text-sludge', 'border-2', 'border-sludge/20');
+      btn.classList.add('bg-sludge', 'text-white');
+
+      // Filter FAQs
+      let visibleCount = 0;
+      faqCategories.forEach(catSection => {
+        const sectionCategory = catSection.getAttribute('data-category');
+        const shouldShow = category === 'all' || sectionCategory === category;
+
+        if (shouldShow) {
+          catSection.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          catSection.classList.add('hidden');
+        }
+      });
+
+      // Show/hide empty state
+      if (emptyState) {
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+      }
+    });
+  });
+</script>

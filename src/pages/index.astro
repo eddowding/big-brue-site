@@ -1,0 +1,322 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SpeakerCard from '../components/SpeakerCard.astro';
+import TicketCard from '../components/TicketCard.astro';
+import { getCollection } from 'astro:content';
+import settings from '../data/settings.json';
+
+const allSpeakers = await getCollection('speakers');
+const featuredSpeakers = allSpeakers
+  .filter(s => s.data.featured)
+  .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
+  .slice(0, 8);
+
+const allProgramme = await getCollection('programme');
+const fridayEvents = allProgramme
+  .filter(e => e.data.date === '2026-06-12')
+  .sort((a, b) => a.data.startTime.localeCompare(b.data.startTime));
+
+const allTickets = await getCollection('tickets');
+const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="Home">
+  <!-- Hero Section -->
+  <section class="bg-blush pt-28 md:pt-32 pb-16 md:pb-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-sludge tracking-tight leading-[1.1] mb-6">
+          CREATIVE DIALOGUE<br>FOR CURIOUS MINDS
+        </h1>
+
+        <p class="text-lg md:text-xl text-sludge/80 max-w-2xl mx-auto mb-8 leading-relaxed">
+          A meeting ground for culture, thought and real-world change. Where artists, writers, thinkers and global decision-makers come together to exchange ideas and challenge assumptions.
+        </p>
+
+        <div class="mb-10">
+          <a href="/tickets" class="inline-flex items-center gap-2 bg-bright hover:bg-bright-dark text-sludge-dark font-bold px-8 py-4 rounded-full text-lg transition-all hover:scale-105 shadow-lg shadow-bright/30">
+            Earlybird Tickets Available
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="text-sludge font-bold text-sm md:text-base tracking-wider mb-8">
+          {settings.eventDates.toUpperCase()} &bull; BRUTON, SOMERSET
+        </div>
+
+        <!-- Countdown -->
+        <div class="flex justify-center gap-4 md:gap-6">
+          <div class="text-center">
+            <div class="text-3xl md:text-5xl font-extrabold text-sludge tabular-nums" id="days">--</div>
+            <div class="text-xs md:text-sm text-sludge/60 font-medium uppercase tracking-wider">Days</div>
+          </div>
+          <div class="text-3xl md:text-5xl font-light text-sludge/30">:</div>
+          <div class="text-center">
+            <div class="text-3xl md:text-5xl font-extrabold text-sludge tabular-nums" id="hours">--</div>
+            <div class="text-xs md:text-sm text-sludge/60 font-medium uppercase tracking-wider">Hours</div>
+          </div>
+          <div class="text-3xl md:text-5xl font-light text-sludge/30">:</div>
+          <div class="text-center">
+            <div class="text-3xl md:text-5xl font-extrabold text-sludge tabular-nums" id="mins">--</div>
+            <div class="text-xs md:text-sm text-sludge/60 font-medium uppercase tracking-wider">Mins</div>
+          </div>
+          <div class="text-3xl md:text-5xl font-light text-sludge/30">:</div>
+          <div class="text-center">
+            <div class="text-3xl md:text-5xl font-extrabold text-sludge tabular-nums" id="secs">--</div>
+            <div class="text-xs md:text-sm text-sludge/60 font-medium uppercase tracking-wider">Secs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Speakers Section -->
+  <section id="speakers" class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-sludge mb-4">SPEAKERS</h2>
+        <p class="text-lg text-warm-black/70 max-w-xl mx-auto">Inspirational voices from the worlds of art, culture, politics, literature and the environment.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        {featuredSpeakers.map((speaker, index) => (
+          <SpeakerCard
+            name={speaker.data.name}
+            role={speaker.data.role}
+            photo={speaker.data.photo}
+            slug={speaker.slug}
+            index={index}
+          />
+        ))}
+      </div>
+
+      <div class="text-center mt-10 md:mt-12">
+        <a href="/speakers" class="inline-flex items-center gap-2 text-sludge font-bold hover:text-bright transition-colors group">
+          View all speakers
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Hub Section -->
+  <section id="hub" class="py-16 md:py-24 bg-bright">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-sludge/20">
+            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=600&fit=crop" alt="Festival atmosphere" class="w-full h-full object-cover">
+          </div>
+          <div class="absolute -bottom-4 -right-4 bg-blush text-sludge font-extrabold text-4xl md:text-5xl px-6 py-3 rounded-xl shadow-lg">
+            £20
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-sludge-dark mb-4">THE HUB</h2>
+          <p class="text-xl md:text-2xl font-medium text-sludge-dark/80 mb-6">Your festival experience starts here</p>
+
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-sludge-dark shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-sludge-dark"><strong>Lightning talks</strong> - 5-minute bursts of brilliance from emerging voices</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-sludge-dark shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-sludge-dark"><strong>Live music</strong> - Performances throughout the day</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-sludge-dark shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-sludge-dark"><strong>Local food & drink</strong> - Somerset's finest producers</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-sludge-dark shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-sludge-dark"><strong>Gallery & gardens</strong> - Explore Hauser & Wirth's world-class art</span>
+            </li>
+          </ul>
+
+          <p class="text-sludge-dark/80 mb-8">
+            Want to catch a main stage talk? Hub ticket holders can upgrade to any session for just £15.
+          </p>
+
+          <a href="/hub" class="inline-flex items-center gap-2 bg-sludge hover:bg-sludge-dark text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:scale-105">
+            Learn More
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programme Preview -->
+  <section id="programme" class="py-16 md:py-24 bg-stone">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-sludge mb-4">PROGRAMME</h2>
+        <p class="text-lg text-warm-black/70">Three days of inspiring conversations</p>
+      </div>
+
+      <div class="flex justify-center gap-2 md:gap-4 mb-10">
+        <button class="px-6 py-3 rounded-full font-bold bg-sludge text-white">Friday 12th</button>
+        <a href="/programme" class="px-6 py-3 rounded-full font-bold bg-white text-sludge hover:bg-sludge/10 transition-colors">Saturday 13th</a>
+        <a href="/programme" class="px-6 py-3 rounded-full font-bold bg-white text-sludge hover:bg-sludge/10 transition-colors">Sunday 14th</a>
+      </div>
+
+      <div class="max-w-3xl mx-auto bg-white rounded-2xl overflow-hidden shadow-sm">
+        <div class="divide-y divide-stone">
+          {fridayEvents.slice(0, 5).map(event => (
+            <div class="p-6 hover:bg-stone/50 transition-colors cursor-pointer">
+              <div class="flex items-start gap-4">
+                <div class="text-sludge font-bold text-lg w-16 shrink-0">{event.data.startTime}</div>
+                <div class="grow">
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 class="font-bold text-lg text-warm-black">{event.data.title}</h3>
+                      {event.data.speakers && event.data.speakers.length > 0 && (
+                        <p class="text-warm-black/60 text-sm">
+                          {event.data.speakers.map(s => {
+                            const speaker = allSpeakers.find(sp => sp.slug === s);
+                            return speaker?.data.name;
+                          }).filter(Boolean).join(', ')}
+                        </p>
+                      )}
+                    </div>
+                    {event.data.categories.length > 0 && (
+                      <div class="flex gap-2 shrink-0">
+                        {event.data.categories.slice(0, 2).map(cat => (
+                          <span class="px-3 py-1 bg-blush text-sludge text-xs font-bold rounded-full uppercase">{cat}</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/programme" class="inline-flex items-center gap-2 text-sludge font-bold hover:text-bright transition-colors group">
+          View full programme
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venue Section -->
+  <section id="info" class="py-16 md:py-24 bg-sludge text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">THE VENUE</h2>
+          <p class="text-xl md:text-2xl font-medium text-white/80 mb-6">{settings.venue.name}</p>
+
+          <div class="space-y-4 mb-8 text-white/80">
+            <p>
+              Set in the heart of Somerset, Hauser & Wirth's stunning Durslade Farm provides the perfect backdrop for Big Brue - a world-class gallery, beautiful gardens, and a genuine community atmosphere.
+            </p>
+            <p class="font-medium text-white">
+              {settings.venue.address}
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-4">
+            <div class="bg-white/10 rounded-xl px-5 py-3">
+              <div class="text-bright font-bold">By Train</div>
+              <div class="text-sm text-white/70">10 min walk from Bruton station</div>
+            </div>
+            <div class="bg-white/10 rounded-xl px-5 py-3">
+              <div class="text-bright font-bold">By Car</div>
+              <div class="text-sm text-white/70">Free parking on site</div>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <a href="/info" class="inline-flex items-center gap-2 text-bright font-bold hover:text-white transition-colors group">
+              Practical information
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&h=600&fit=crop" alt="Hauser & Wirth Somerset" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tickets Section -->
+  <section id="tickets" class="py-16 md:py-24 bg-blush">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-sludge mb-4">TICKETS</h2>
+        <p class="text-lg text-sludge/70">{settings.earlybird.message}</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {tickets.map(ticket => (
+          <TicketCard
+            name={ticket.data.name}
+            price={ticket.data.price}
+            earlybirdPrice={ticket.data.earlybirdPrice}
+            includes={ticket.data.includes}
+            variant={ticket.data.variant}
+            highlight={ticket.data.highlight}
+            perDay={ticket.data.name.toLowerCase().includes('hub')}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script define:vars={{ targetDate: settings.countdown.targetDate }}>
+  function updateCountdown() {
+    const target = new Date(targetDate).getTime();
+    const now = new Date().getTime();
+    const diff = target - now;
+
+    if (diff < 0) return;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minsEl = document.getElementById('mins');
+    const secsEl = document.getElementById('secs');
+
+    if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+    if (minsEl) minsEl.textContent = String(mins).padStart(2, '0');
+    if (secsEl) secsEl.textContent = String(secs).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
