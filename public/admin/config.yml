@@ -1,8 +1,6 @@
 backend:
-  name: github
-  repo: eddowding/big-brue-site
+  name: git-gateway
   branch: main
-  base_url: https://decap-oauth.netlify.app
 
 media_folder: "public/images"
 public_folder: "/images"
