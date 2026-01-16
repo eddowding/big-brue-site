@@ -3,29 +3,23 @@ import settings from '../data/settings.json';
 
 const navItems = [
   { href: '/speakers', label: 'Speakers' },
-  { href: '/programme', label: 'Programme' },
+  // { href: '/programme', label: 'Programme' }, // Hidden until programme is finalized
   { href: '/hub', label: 'The Hub' },
   { href: '/tickets', label: 'Tickets' },
   { href: '/info', label: 'Info' },
+  { href: '/about', label: 'About' },
 ];
 
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-stone">
+<header id="main-header" class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-stone transition-all duration-500 ease-out">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 md:h-20">
+    <div id="header-inner" class="flex items-center justify-between h-24 md:h-28 transition-all duration-500 ease-out">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-3">
-        <svg class="w-10 h-10 md:w-12 md:h-12 text-sludge" viewBox="0 0 100 100" fill="currentColor">
-          <rect x="5" y="5" width="90" height="90" rx="4" fill="currentColor"/>
-          <path d="M20 20 Q30 15 40 25 Q50 35 45 50 Q40 65 50 75 Q60 85 75 80" stroke="#F5D5D5" stroke-width="12" fill="none" stroke-linecap="round"/>
-          <path d="M15 15 Q25 20 30 15 M70 10 Q80 15 85 12 M25 25 Q35 30 40 22" stroke="#F5D5D5" stroke-width="3" fill="none" stroke-linecap="round"/>
-        </svg>
-        <div class="hidden sm:block">
-          <div class="text-sludge font-extrabold text-xl tracking-tight leading-none">{settings.siteName.toUpperCase()}</div>
-          <div class="text-sludge/70 text-xs font-medium tracking-wide">{settings.tagline}</div>
-        </div>
+      <a href="/" class="flex items-center">
+        <img id="logo-large" src="/logo_header.svg" alt="Big Brue - Small Town, Big Ideas" class="h-14 md:h-16 w-auto transition-all duration-500 ease-out opacity-100" />
+        <img id="logo-small" src="/logo_header_small.svg" alt="Big Brue - Small Town, Big Ideas" class="h-10 md:h-12 w-auto absolute transition-all duration-500 ease-out opacity-0" />
       </a>
 
       <!-- Desktop Nav -->
@@ -81,8 +75,45 @@ const currentPath = Astro.url.pathname;
 <script>
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
+  const header = document.getElementById('main-header');
+  const headerInner = document.getElementById('header-inner');
+  const logoLarge = document.getElementById('logo-large');
+  const logoSmall = document.getElementById('logo-small');
 
   btn?.addEventListener('click', () => {
     menu?.classList.toggle('hidden');
   });
+
+  // Scroll detection for header compression
+  let isScrolled = false;
+  const scrollThreshold = 50;
+
+  function handleScroll() {
+    const shouldCompress = window.scrollY > scrollThreshold;
+
+    if (shouldCompress !== isScrolled) {
+      isScrolled = shouldCompress;
+
+      if (isScrolled) {
+        // Compressed state
+        headerInner?.classList.remove('h-24', 'md:h-28');
+        headerInner?.classList.add('h-16', 'md:h-20');
+        logoLarge?.classList.remove('opacity-100');
+        logoLarge?.classList.add('opacity-0');
+        logoSmall?.classList.remove('opacity-0');
+        logoSmall?.classList.add('opacity-100');
+      } else {
+        // Expanded state
+        headerInner?.classList.remove('h-16', 'md:h-20');
+        headerInner?.classList.add('h-24', 'md:h-28');
+        logoLarge?.classList.remove('opacity-0');
+        logoLarge?.classList.add('opacity-100');
+        logoSmall?.classList.remove('opacity-100');
+        logoSmall?.classList.add('opacity-0');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll(); // Check initial state
 </script>

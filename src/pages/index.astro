@@ -11,10 +11,11 @@ const featuredSpeakers = allSpeakers
   .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
   .slice(0, 8);
 
-const allProgramme = await getCollection('programme');
-const fridayEvents = allProgramme
-  .filter(e => e.data.date === '2026-06-12')
-  .sort((a, b) => a.data.startTime.localeCompare(b.data.startTime));
+// Programme section hidden until programme is finalized
+// const allProgramme = await getCollection('programme');
+// const fridayEvents = allProgramme
+//   .filter(e => e.data.date === '2026-06-12')
+//   .sort((a, b) => a.data.startTime.localeCompare(b.data.startTime));
 
 const allTickets = await getCollection('tickets');
 const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
@@ -162,64 +163,11 @@ const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
     </div>
   </section>
 
-  <!-- Programme Preview -->
+  <!-- Programme Preview - Hidden until programme is finalized
   <section id="programme" class="py-16 md:py-24 bg-stone">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-sludge mb-4">PROGRAMME</h2>
-        <p class="text-lg text-warm-black/70">Three days of inspiring conversations</p>
-      </div>
-
-      <div class="flex justify-center gap-2 md:gap-4 mb-10">
-        <button class="px-6 py-3 rounded-full font-bold bg-sludge text-white">Friday 12th</button>
-        <a href="/programme" class="px-6 py-3 rounded-full font-bold bg-white text-sludge hover:bg-sludge/10 transition-colors">Saturday 13th</a>
-        <a href="/programme" class="px-6 py-3 rounded-full font-bold bg-white text-sludge hover:bg-sludge/10 transition-colors">Sunday 14th</a>
-      </div>
-
-      <div class="max-w-3xl mx-auto bg-white rounded-2xl overflow-hidden shadow-sm">
-        <div class="divide-y divide-stone">
-          {fridayEvents.slice(0, 5).map(event => (
-            <div class="p-6 hover:bg-stone/50 transition-colors cursor-pointer">
-              <div class="flex items-start gap-4">
-                <div class="text-sludge font-bold text-lg w-16 shrink-0">{event.data.startTime}</div>
-                <div class="grow">
-                  <div class="flex items-start justify-between gap-4">
-                    <div>
-                      <h3 class="font-bold text-lg text-warm-black">{event.data.title}</h3>
-                      {event.data.speakers && event.data.speakers.length > 0 && (
-                        <p class="text-warm-black/60 text-sm">
-                          {event.data.speakers.map(s => {
-                            const speaker = allSpeakers.find(sp => sp.slug === s);
-                            return speaker?.data.name;
-                          }).filter(Boolean).join(', ')}
-                        </p>
-                      )}
-                    </div>
-                    {event.data.categories.length > 0 && (
-                      <div class="flex gap-2 shrink-0">
-                        {event.data.categories.slice(0, 2).map(cat => (
-                          <span class="px-3 py-1 bg-blush text-sludge text-xs font-bold rounded-full uppercase">{cat}</span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div class="text-center mt-10">
-        <a href="/programme" class="inline-flex items-center gap-2 text-sludge font-bold hover:text-bright transition-colors group">
-          View full programme
-          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
-        </a>
-      </div>
-    </div>
+    ...
   </section>
+  -->
 
   <!-- Venue Section -->
   <section id="info" class="py-16 md:py-24 bg-sludge text-white">
@@ -227,14 +175,14 @@ const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
       <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         <div>
           <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">THE VENUE</h2>
-          <p class="text-xl md:text-2xl font-medium text-white/80 mb-6">{settings.venue.name}</p>
+          <p class="text-xl md:text-2xl font-medium text-white/80 mb-6">Hauser & Wirth Somerset</p>
 
           <div class="space-y-4 mb-8 text-white/80">
             <p>
-              Set in the heart of Somerset, Hauser & Wirth's stunning Durslade Farm provides the perfect backdrop for Big Brue - a world-class gallery, beautiful gardens, and a genuine community atmosphere.
+              Set in the heart of Somerset on the grounds of Hauser & Wirth, Big Brue offers a weekend of inspiring conversations surrounded by stunning countryside.
             </p>
             <p class="font-medium text-white">
-              {settings.venue.address}
+              Hauser & Wirth Somerset, Durslade Farm, Dropping Lane, Bruton BA10 0NL
             </p>
           </div>
 
@@ -261,7 +209,14 @@ const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
 
         <div class="relative">
           <div class="aspect-[4/3] rounded-2xl overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&h=600&fit=crop" alt="Hauser & Wirth Somerset" class="w-full h-full object-cover">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2504.0!2d-2.4547!3d51.1125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48721e8f2c6f1e6f%3A0x4b7c5c5c5c5c5c5c!2sHauser%20%26%20Wirth%20Somerset!5e0!3m2!1sen!2suk!4v1705000000000!5m2!1sen!2suk"
+              class="w-full h-full border-0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Map showing Big Brue festival location in Bruton, Somerset">
+            </iframe>
           </div>
         </div>
       </div>
@@ -288,6 +243,48 @@ const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
             perDay={ticket.data.name.toLowerCase().includes('hub')}
           />
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-sludge mb-4">THE TEAM</h2>
+        <p class="text-lg text-warm-black/70 max-w-2xl mx-auto">Big Brue is brought to you by a team of passionate people who believe in the power of conversation.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-5xl mx-auto mb-10">
+        <div class="bg-stone rounded-xl p-4 text-center">
+          <h3 class="font-bold text-sludge">Mariella Frostrup</h3>
+          <p class="text-xs text-warm-black/60 mt-1">Journalist & Broadcaster</p>
+        </div>
+        <div class="bg-blush rounded-xl p-4 text-center">
+          <h3 class="font-bold text-sludge">John Gordon</h3>
+          <p class="text-xs text-sludge/60 mt-1">Co-founder, Intelligence Squared</p>
+        </div>
+        <div class="bg-bright rounded-xl p-4 text-center">
+          <h3 class="font-bold text-sludge-dark">Catherine Fairweather</h3>
+          <p class="text-xs text-sludge-dark/60 mt-1">Journalist & Editor</p>
+        </div>
+        <div class="bg-sludge rounded-xl p-4 text-center">
+          <h3 class="font-bold text-white">Eleanor O'Keeffe</h3>
+          <p class="text-xs text-white/60 mt-1">Co-founder, 5x15</p>
+        </div>
+        <div class="bg-stone rounded-xl p-4 text-center">
+          <h3 class="font-bold text-sludge">Jason McCue</h3>
+          <p class="text-xs text-warm-black/60 mt-1">International Lawyer</p>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="/about" class="inline-flex items-center gap-2 text-sludge font-bold hover:text-bright transition-colors group">
+          Learn more about us
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>

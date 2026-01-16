@@ -7,15 +7,8 @@ import settings from '../data/settings.json';
     <div class="grid md:grid-cols-4 gap-8 mb-12">
       <!-- Logo & Info -->
       <div class="md:col-span-1">
-        <div class="flex items-center gap-3 mb-4">
-          <svg class="w-10 h-10 text-bright" viewBox="0 0 100 100" fill="currentColor">
-            <rect x="5" y="5" width="90" height="90" rx="4" fill="currentColor"/>
-            <path d="M20 20 Q30 15 40 25 Q50 35 45 50 Q40 65 50 75 Q60 85 75 80" stroke="#1e1e1e" stroke-width="12" fill="none" stroke-linecap="round"/>
-          </svg>
-          <div>
-            <div class="font-extrabold text-lg">{settings.siteName.toUpperCase()}</div>
-            <div class="text-white/50 text-xs">{settings.tagline}</div>
-          </div>
+        <div class="mb-4">
+          <img src="/logo_tall.svg" alt="Big Brue - Small Town, Big Ideas" class="h-24 w-auto brightness-0 invert" />
         </div>
         <p class="text-white/50 text-sm">
           {settings.eventDates}<br>
@@ -27,10 +20,10 @@ import settings from '../data/settings.json';
       <div>
         <h4 class="font-bold mb-4">Festival</h4>
         <ul class="space-y-2 text-white/70">
-          <li><a href="/programme" class="hover:text-bright transition-colors">Programme</a></li>
           <li><a href="/speakers" class="hover:text-bright transition-colors">Speakers</a></li>
           <li><a href="/hub" class="hover:text-bright transition-colors">The Hub</a></li>
           <li><a href="/tickets" class="hover:text-bright transition-colors">Tickets</a></li>
+          <li><a href="/about" class="hover:text-bright transition-colors">About Us</a></li>
         </ul>
       </div>
 

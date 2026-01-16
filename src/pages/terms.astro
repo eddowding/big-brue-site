@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+import settings from '../data/settings.json';
+---
+
+<Layout title="Terms & Conditions" description="Terms and conditions for Big Brue festival ticket purchases and website use.">
+  <section class="bg-stone pt-28 md:pt-32 pb-16 md:pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-sludge tracking-tight mb-4">
+          TERMS & CONDITIONS
+        </h1>
+        <p class="text-lg md:text-xl text-sludge/80 leading-relaxed">
+          Last updated: January 2026
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-lg max-w-none text-warm-black/80">
+
+        <h2 class="text-2xl font-bold text-sludge mt-8 mb-4">1. Introduction</h2>
+        <p>
+          These terms and conditions govern your use of the Big Brue website and your attendance at Big Brue festival events. By purchasing a ticket or using our website, you agree to these terms.
+        </p>
+
+        <h2 class="text-2xl font-bold text-sludge mt-8 mb-4">2. Tickets</h2>
+        <h3 class="text-xl font-bold text-sludge mt-6 mb-3">2.1 Purchase</h3>
+        <p>
+          All ticket sales are final. Tickets are non-transferable unless otherwise stated. You must be 18 or over to purchase tickets.
+        </p>
+
+        <h3 class="text-xl font-bold text-sludge mt-6 mb-3">2.2 Refunds</h3>
+        <p>
+          Refunds are available up to 30 days before the event. After this date, tickets are non-refundable except in exceptional circumstances at our discretion. If we cancel the event, you will receive a full refund.
+        </p>
+
+        <h3 class="text-xl font-bold text-sludge mt-6 mb-3">2.3 Programme Changes</h3>
+        <p>
+          We reserve the right to make changes to the festival programme, including speakers and session times. Such changes do not entitle you to a refund.
+        </p>
+
+        <h2 class="text-2xl font-bold text-sludge mt-8 mb-4">3. Event Attendance</h2>
+        <h3 class="text-xl font-bold text-sludge mt-6 mb-3">3.1 Admission</h3>
+        <p>
+          You must present a valid ticket or confirmation email for admission. We reserve the right to refuse admission to anyone who does not comply with these terms or whose behaviour is inappropriate.
+        </p>
+
+        <h3 class="text-xl font-bold text-sludge mt-6 mb-3">3.2 Code of Conduct</h3>
+        <p>
+          Big Brue is committed to providing a welcoming and respectful environment for all attendees. We expect all participants to:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Treat all attendees, speakers, and staff with respect</li>
+          <li>Engage in constructive dialogue, even when opinions differ</li>
+          <li>Refrain from harassment, discrimination, or disruptive behaviour</li>
+          <li>Follow all health and safety guidelines</li>
+        </ul>
+        <p class="mt-4">
+          We reserve the right to remove any attendee who violates this code of conduct without refund.
+        </p>
+
+        <h3 class="text-xl font-bold text-sludge mt-6 mb-3">3.3 Photography & Recording</h3>
+        <p>
+          Professional photography and filming will take place during the event. By attending, you consent to being photographed or filmed, and for such images to be used in Big Brue promotional materials.
+        </p>
+        <p class="mt-4">
+          Personal photography is permitted but please be respectful of speakers and other attendees. Recording of sessions is not permitted without prior written consent.
+        </p>
+
+        <h2 class="text-2xl font-bold text-sludge mt-8 mb-4">4. Liability</h2>
+        <p>
+          Big Brue and its organisers shall not be liable for any loss, damage, or injury suffered by attendees except where caused by our negligence. We recommend that you have appropriate personal insurance.
+        </p>
+        <p class="mt-4">
+          We are not responsible for any loss or theft of personal belongings during the event.
+        </p>
+
+        <h2 class="text-2xl font-bold text-sludge mt-8 mb-4">5. Force Majeure</h2>
+        <p>
+          We shall not be liable for any failure to perform our obligations where such failure results from circumstances beyond our reasonable control, including but not limited to severe weather, natural disasters, pandemics, or government restrictions.
+        </p>
+
+        <h2 class="text-2xl font-bold text-sludge mt-8 mb-4">6. Website Use</h2>
+        <p>
+          The content on this website is provided for general information purposes. While we endeavour to keep the information accurate and up to date, we make no warranties about completeness, accuracy, or reliability.
+        </p>
+
+        <h2 class="text-2xl font-bold text-sludge mt-8 mb-4">7. Intellectual Property</h2>
+        <p>
+          All content on this website, including text, images, and logos, is the property of Big Brue or its licensors and is protected by copyright law. You may not reproduce, distribute, or use any content without our prior written permission.
+        </p>
+
+        <h2 class="text-2xl font-bold text-sludge mt-8 mb-4">8. Governing Law</h2>
+        <p>
+          These terms are governed by the laws of England and Wales. Any disputes will be subject to the exclusive jurisdiction of the courts of England and Wales.
+        </p>
+
+        <h2 class="text-2xl font-bold text-sludge mt-8 mb-4">9. Contact</h2>
+        <p>
+          If you have any questions about these terms, please contact us at <a href={`mailto:${settings.contact.email}`} class="text-sludge hover:text-bright">{settings.contact.email}</a>.
+        </p>
+
+      </div>
+    </div>
+  </section>
+</Layout>
