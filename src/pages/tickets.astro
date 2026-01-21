@@ -16,7 +16,7 @@ const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
           TICKETS
         </h1>
         <p class="text-lg md:text-xl text-sludge/80 leading-relaxed">
-          Join us for three days of inspiring conversations at Hauser & Wirth Somerset.
+          Join us for two days of inspiring conversations at Hauser & Wirth Somerset.
         </p>
         {settings.earlybird.active && (
           <div class="mt-6 inline-flex items-center gap-2 bg-sludge text-white px-4 py-2 rounded-full text-sm font-bold">
@@ -38,6 +38,7 @@ const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
             name={ticket.data.name}
             price={ticket.data.price}
             earlybirdPrice={ticket.data.earlybirdPrice}
+            localPrice={ticket.data.localPrice}
             includes={ticket.data.includes}
             variant={ticket.data.variant}
             highlight={ticket.data.highlight}

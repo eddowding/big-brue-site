@@ -1,13 +1,12 @@
 ---
 name: "Day Pass"
-price: 95
+price: 100
 earlybirdPrice: 75
 earlybirdEnds: "2026-03-01"
 includes:
   - "All talks on your chosen day"
   - "Full Hub access"
-  - "Gallery & garden access"
-  - "Free parking"
+  - "Gallery & Garden access"
 available: true
 order: 2
 highlight: true

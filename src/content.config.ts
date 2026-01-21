@@ -38,6 +38,7 @@ const tickets = defineCollection({
     price: z.number(),
     earlybirdPrice: z.number().optional(),
     earlybirdEnds: z.string().optional(),
+    localPrice: z.number().optional(),
     includes: z.array(z.string()),
     available: z.boolean().default(true),
     order: z.number(),

@@ -1,14 +1,14 @@
 ---
 name: "The Hub"
-price: 20
+price: 30
+localPrice: 10
 includes:
   - "Hub access all day"
-  - "Lightning talks & music"
-  - "Gallery & garden access"
-  - "Upgrade to talks from £15"
+  - "Speakers Corner talks & music (within the Hub)"
+  - "Gallery & Garden access"
 available: true
 order: 1
 variant: "bright"
 ---
 
-Your gateway to Big Brue. Experience the festival atmosphere without the full commitment.
+Your festival experience starts here. Want to catch a main stage talk? Hub ticket holders can upgrade to any session for just £15 on the day.

@@ -3,13 +3,14 @@ interface Props {
   name: string;
   price: number;
   earlybirdPrice?: number;
+  localPrice?: number;
   includes: string[];
   variant: 'bright' | 'white' | 'sludge';
   highlight?: boolean;
   perDay?: boolean;
 }
 
-const { name, price, earlybirdPrice, includes, variant, highlight = false, perDay = false } = Astro.props;
+const { name, price, earlybirdPrice, localPrice, includes, variant, highlight = false, perDay = false } = Astro.props;
 
 const variantStyles = {
   bright: {
@@ -55,6 +56,9 @@ const originalPrice = earlybirdPrice ? price : null;
     <span class:list={["text-5xl font-extrabold", styles.text]}>£{displayPrice}</span>
     {originalPrice && (
       <span class:list={["text-lg line-through ml-2", styles.textMuted]}>£{originalPrice}</span>
+    )}
+    {localPrice && (
+      <span class:list={["text-sm block mt-1", styles.textMuted]}>£{localPrice} for locals</span>
     )}
   </div>
 
