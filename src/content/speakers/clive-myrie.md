@@ -1,7 +1,7 @@
 ---
 name: "Clive Myrie"
 role: "Journalist & Presenter"
-photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+photo: "https://upload.wikimedia.org/wikipedia/commons/2/27/Ukraine%27s_President_Zelensky_to_BBC_Blood_money_being_paid_for_Russian_oil._%2852005232574%29_%28cropped%29.jpg"
 categories: ["politics"]
 featured: true
 order: 2

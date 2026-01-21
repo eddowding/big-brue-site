@@ -1,7 +1,7 @@
 ---
 name: "Katy Hessel"
 role: "Art Historian"
-photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face"
+photo: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Katy_Hessel%2C_Sep._2024.png"
 categories: ["arts"]
 featured: true
 order: 7

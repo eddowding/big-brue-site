@@ -1,7 +1,7 @@
 ---
 name: "Don McCullin"
 role: "Photographer"
-photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
+photo: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Don_McCullin.jpg"
 categories: ["arts"]
 featured: true
 order: 3

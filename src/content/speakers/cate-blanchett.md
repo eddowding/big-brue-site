@@ -1,7 +1,7 @@
 ---
 name: "Cate Blanchett"
 role: "Actor & Activist"
-photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face"
+photo: "https://upload.wikimedia.org/wikipedia/commons/6/61/Cate_Blanchett-63298.jpg"
 categories: ["arts", "politics"]
 featured: true
 order: 1
