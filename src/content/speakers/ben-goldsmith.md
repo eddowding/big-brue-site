@@ -1,7 +1,7 @@
 ---
 name: "Ben Goldsmith"
 role: "Environmentalist"
-photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=face"
+photo: "https://www.chartwellspeakers.com/wp-content/uploads/2025/01/ben-goldsmith-scaled-e1737972861278.jpeg"
 categories: ["environment"]
 featured: true
 order: 5

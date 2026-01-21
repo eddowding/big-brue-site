@@ -1,7 +1,7 @@
 ---
 name: "Julia Samuel"
 role: "Psychotherapist & Author"
-photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face"
+photo: "https://cdn.prod.website-files.com/665d8c20bb3ad20dfe24c872/66a655a0fb2fc191cc40f77c_JuliaSamuelHero.webp"
 categories: ["wellbeing"]
 featured: true
 order: 4

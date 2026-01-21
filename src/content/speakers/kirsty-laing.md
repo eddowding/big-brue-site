@@ -1,7 +1,7 @@
 ---
 name: "Kirsty Laing"
 role: "Theatre Director"
-photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face"
+photo: "https://upload.wikimedia.org/wikipedia/commons/7/74/Kirsty_Lang.jpg"
 categories: ["arts"]
 featured: true
 order: 8
