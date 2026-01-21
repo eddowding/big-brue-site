@@ -29,7 +29,7 @@ const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
         <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-sludge tracking-tight leading-[1.1] mb-4">
           BIG BRUE
         </h1>
-        <p class="text-xl md:text-2xl font-medium text-sludge/80 mb-6">Small Town, Big Ideas</p>
+        <p class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-sludge tracking-tight mb-6">Small Town, Big Ideas</p>
 
         <div class="text-sludge font-bold text-sm md:text-base tracking-wider mb-4">
           {settings.eventDates.toUpperCase()}
@@ -38,15 +38,11 @@ const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
           {settings.venue.name}, {settings.venue.address}
         </p>
 
-        <p class="text-sm md:text-base text-sludge/80 mb-6 italic">
-          Speakers to include: Cate Blanchett, Misha Glenny, Ben Goldsmith, Kirsty Laing, Don McCullin, Julia Samuel, Clive Myrie, Katy Hessel and many many more
-        </p>
-
         <p class="text-lg md:text-xl text-sludge/80 max-w-3xl mx-auto mb-6 leading-relaxed">
           This summer, a brand new festival is launching in the celebrated Somerset town of Bruton. An annual destination for curious minds, Big Brue will bring together inspirational speakers and renowned voices for creative debate across the worlds of culture, domestic and global affairs, arts, literature and the environment.
         </p>
 
-        <p class="text-base md:text-lg text-sludge/70 max-w-3xl mx-auto mb-8 leading-relaxed">
+        <p class="text-lg md:text-xl text-sludge/80 max-w-3xl mx-auto mb-8 leading-relaxed">
           Challenging orthodoxies and inspiring new perspectives for our fractured world through our speakers' events, we will also have dedicated sessions for young people, a community Big Brue Hub with local food, drinks and crafts, and a Speakers Corner (for all - along with guest speakers - to have their 5 minute opportunity to present their big ideas), musical interludes, and top talent from near and far.
         </p>
 
@@ -116,21 +112,6 @@ const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
     </div>
   </section>
 
-  <!-- Main Marquees Section -->
-  <section id="marquees" class="py-16 md:py-24 bg-stone">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-sludge mb-6">MAIN MARQUEES</h2>
-        <p class="text-lg md:text-xl text-warm-black/80 mb-6 leading-relaxed">
-          Catch all our inspirational speakers in our two purpose built marquees. We operate a first-come-first-served seating policy for all day and weekend pass holders.
-        </p>
-        <p class="text-base text-warm-black/70">
-          Hub ticket holders can buy individual tickets for the talks if available for £15 on the day.
-        </p>
-      </div>
-    </div>
-  </section>
-
   <!-- The Hub Section -->
   <section id="hub" class="py-16 md:py-24 bg-bright">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -172,6 +153,21 @@ const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Marquees Section -->
+  <section id="marquees" class="py-16 md:py-24 bg-stone">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-sludge mb-6">MAIN MARQUEES</h2>
+        <p class="text-lg md:text-xl text-warm-black/80 mb-6 leading-relaxed">
+          Catch all our inspirational speakers in our two purpose built marquees. We operate a first-come-first-served seating policy for all day and weekend pass holders.
+        </p>
+        <p class="text-base text-warm-black/70">
+          Hub ticket holders can buy individual tickets for the talks if available for £15 on the day.
+        </p>
       </div>
     </div>
   </section>
