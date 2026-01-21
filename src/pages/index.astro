@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import SpeakerCard from '../components/SpeakerCard.astro';
 import TicketCard from '../components/TicketCard.astro';
+import ContentSection from '../components/ContentSection.astro';
 import { getCollection } from 'astro:content';
 import settings from '../data/settings.json';
 
@@ -19,6 +20,12 @@ const featuredSpeakers = allSpeakers
 
 const allTickets = await getCollection('tickets');
 const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
+
+// Load homepage sections (Hub, Marquees)
+const allSections = await getCollection('sections');
+const sections = allSections
+  .filter(section => section.data.visible)
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout title="Home">
@@ -112,65 +119,24 @@ const tickets = allTickets.sort((a, b) => a.data.order - b.data.order);
     </div>
   </section>
 
-  <!-- The Hub Section -->
-  <section id="hub" class="py-16 md:py-24 bg-bright">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-sludge-dark mb-4">THE HUB</h2>
-        <p class="text-xl md:text-2xl font-medium text-sludge-dark/80 mb-2">Your festival experience starts here</p>
-        <p class="text-lg text-sludge-dark/70 mb-8">
-          £30 per day <span class="text-sludge-dark/50">(£10 for locals)</span>
-        </p>
-
-        <ul class="space-y-4 mb-8 text-left max-w-md mx-auto">
-          <li class="flex items-start gap-3">
-            <svg class="w-6 h-6 text-sludge-dark shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
-            <span class="text-sludge-dark">Hub access all day</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-6 h-6 text-sludge-dark shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
-            <span class="text-sludge-dark">Speakers Corner talks & music (within the Hub)</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-6 h-6 text-sludge-dark shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
-            <span class="text-sludge-dark">Gallery & Garden access</span>
-          </li>
-        </ul>
-
-        <p class="text-sludge-dark/80 mb-8">
-          Want to catch a main stage talk? Hub ticket holders can upgrade to any session for just £15 on the day.
-        </p>
-
-        <a href="/hub" class="inline-flex items-center gap-2 bg-sludge hover:bg-sludge-dark text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:scale-105">
-          Learn More
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Marquees Section -->
-  <section id="marquees" class="py-16 md:py-24 bg-stone">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-sludge mb-6">MAIN MARQUEES</h2>
-        <p class="text-lg md:text-xl text-warm-black/80 mb-6 leading-relaxed">
-          Catch all our inspirational speakers in our two purpose built marquees. We operate a first-come-first-served seating policy for all day and weekend pass holders.
-        </p>
-        <p class="text-base text-warm-black/70">
-          Hub ticket holders can buy individual tickets for the talks if available for £15 on the day.
-        </p>
-      </div>
-    </div>
-  </section>
+  <!-- Dynamic Sections (Hub, Marquees) -->
+  {sections.map(async (section) => {
+    const { Content } = await section.render();
+    return (
+      <ContentSection
+        sectionId={section.data.sectionId}
+        heading={section.data.heading}
+        subheading={section.data.subheading}
+        pricingText={section.data.pricingText}
+        bullets={section.data.bullets}
+        description={section.data.description}
+        cta={section.data.cta}
+        backgroundColor={section.data.backgroundColor}
+        textColor={section.data.textColor}
+        bodyContent={Content}
+      />
+    );
+  })}
 
   <!-- Programme Preview - Hidden until programme is finalized
   <section id="programme" class="py-16 md:py-24 bg-stone">

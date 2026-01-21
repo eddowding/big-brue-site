@@ -66,10 +66,35 @@ const pages = defineCollection({
   }),
 });
 
+const sections = defineCollection({
+  type: 'content',
+  schema: z.object({
+    sectionId: z.enum(['hub', 'marquees']),
+    heading: z.string(),
+    subheading: z.string().optional(),
+    pricingText: z.string().optional(),
+    bullets: z.array(z.object({
+      text: z.string(),
+      icon: z.enum(['checkmark', 'star', 'arrow']).default('checkmark')
+    })).optional(),
+    description: z.array(z.string()).optional(),
+    cta: z.object({
+      text: z.string(),
+      url: z.string(),
+      showArrow: z.boolean().default(true)
+    }).optional(),
+    backgroundColor: z.enum(['bright', 'stone', 'blush', 'white']).default('white'),
+    textColor: z.enum(['sludge', 'sludge-dark', 'warm-black']).default('sludge'),
+    order: z.number().default(0),
+    visible: z.boolean().default(true),
+  }),
+});
+
 export const collections = {
   speakers,
   programme,
   tickets,
   faq,
   pages,
+  sections,
 };

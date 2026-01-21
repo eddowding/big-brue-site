@@ -112,6 +112,72 @@ collections:
       - { label: "Display Order", name: "order", widget: "number" }
       - { label: "Answer", name: "body", widget: "markdown" }
 
+  - name: "sections"
+    label: "Homepage Sections"
+    folder: "src/content/sections"
+    create: true
+    slug: "{{sectionId}}"
+    identifier_field: "sectionId"
+    fields:
+      - label: "Section ID"
+        name: "sectionId"
+        widget: "select"
+        options:
+          - { label: "The Hub", value: "hub" }
+          - { label: "Main Marquees", value: "marquees" }
+        hint: "Which section is this content for?"
+      - { label: "Heading", name: "heading", widget: "string" }
+      - { label: "Subheading", name: "subheading", widget: "string", required: false }
+      - { label: "Pricing Text (HTML allowed)", name: "pricingText", widget: "text", required: false, hint: "For Hub pricing display" }
+      - label: "Bullet Points"
+        name: "bullets"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Text", name: "text", widget: "string" }
+          - label: "Icon"
+            name: "icon"
+            widget: "select"
+            default: "checkmark"
+            options:
+              - { label: "Checkmark", value: "checkmark" }
+              - { label: "Star", value: "star" }
+              - { label: "Arrow", value: "arrow" }
+      - label: "Description Paragraphs"
+        name: "description"
+        widget: "list"
+        required: false
+        field: { label: "Paragraph", name: "paragraph", widget: "text" }
+      - label: "Call to Action Button"
+        name: "cta"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Button Text", name: "text", widget: "string" }
+          - { label: "URL", name: "url", widget: "string" }
+          - { label: "Show Arrow Icon", name: "showArrow", widget: "boolean", default: true }
+      - label: "Background Color"
+        name: "backgroundColor"
+        widget: "select"
+        default: "white"
+        options:
+          - { label: "Bright Green", value: "bright" }
+          - { label: "Beige Stone", value: "stone" }
+          - { label: "Pink Blush", value: "blush" }
+          - { label: "White", value: "white" }
+      - label: "Text Color"
+        name: "textColor"
+        widget: "select"
+        default: "sludge"
+        options:
+          - { label: "Sludge Green", value: "sludge" }
+          - { label: "Dark Sludge", value: "sludge-dark" }
+          - { label: "Warm Black", value: "warm-black" }
+      - { label: "Display Order", name: "order", widget: "number", default: 0 }
+      - { label: "Visible", name: "visible", widget: "boolean", default: true }
+      - { label: "Additional Content", name: "body", widget: "markdown", required: false, hint: "Rich text content (optional)" }
+
   - name: "settings"
     label: "Site Settings"
     files:
