@@ -1,7 +1,7 @@
 ---
 name: Julia Samuel
 role: Psychotherapist
-photo: https://drive.google.com/file/d/1X8wz-sGrAoBFcdzLO4Qz7ppQ6k10MEeX/view?usp=drive_link
+photo: https://share.google/nFUMC5oxZME3x8YdQ
 categories:
   - wellbeing
   - family
