@@ -1,6 +1,6 @@
 ---
 name: Prue Leith
-role: "Businesswoman, chef and TV presenter "
+role: Restaurateur, writer and broadcaster.
 photo: https://drive.google.com/file/d/1DSGqaEu0eBGSDlt7MqtN4-6eeWPwXlnI/view?usp=drive_link
 categories:
   - family
