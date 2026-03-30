@@ -1,6 +1,6 @@
 ---
 name: Harriet Walter
-role: Actress and Writer
+role: Actress & Writer
 photo: https://d27o7y1r7mnbwc.cloudfront.net/media/uploads/clients/harriet-walter/images/2022-11-01_105833_HW_main.jpg
 categories:
   - arts
