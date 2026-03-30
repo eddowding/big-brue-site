@@ -1,7 +1,7 @@
 ---
 name: Prue Leith
 role: Restaurateur, writer and broadcaster.
-photo: https://drive.google.com/file/d/1DSGqaEu0eBGSDlt7MqtN4-6eeWPwXlnI/view?usp=drive_link
+photo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyX-C15ZL33xo1h_ZYtsmeq3SvTVazInaHug&s
 categories:
   - family
 featured: true
